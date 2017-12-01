@@ -38,18 +38,8 @@
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
 
-    <div th:if="${jobs} and ${jobs.size()}">
+    <div th:replace="fragments :: job-listings"></div>
 
-        <div th:each="job : ${jobs}">
-            <table class="job-listing">
-                <tr th:each="jobField : ${job}">
-                    <td th:text="${jobField.Key}">skill:</td>
-                    <td th:text="${jobField.Value}">sql</td>
-                </tr>
-            </table>
-        </div>
-
-    </div>
 
 </div>
 
