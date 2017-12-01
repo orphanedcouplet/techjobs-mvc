@@ -15,12 +15,18 @@
 
         <p>
             <span th:each="column : ${columns}">
+
+                <!-- TODO ??? i tried to fix the button but it's just stuck on 'skill' now instead of 'all' -->
                 <input
                         type="radio"
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
+
+
+                        th:checked="${lastSearch}? ${lastSearch} : ${column.key}"
+
+                />
                 <label th:for="${column.key}" th:text="${column.value}"></label>
             </span>
 
