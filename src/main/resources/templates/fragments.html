@@ -32,8 +32,13 @@
             <div th:each="job : ${jobs}">
                 <table class="job-listing">
                     <tr th:each="jobField : ${job}">
-                        <td th:text="${#strings.capitalizeWords(jobField.Key)}">skill:</td>
-                        <td th:text="${jobField.Value}">sql</td>
+                        <td th:text="${#strings.capitalizeWords(jobField.Key)}">Location:</td>
+                        <td>
+                            <a
+                                th:href="(${jobField.Key} != 'name')? @{/list/jobs(column=${jobField.Key},value=${jobField.Value})}"
+                                th:text="${jobField.Value}">portland
+                            </a>
+                        </td>
                     </tr>
                 </table>
             </div>
