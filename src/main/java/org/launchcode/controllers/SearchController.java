@@ -1,5 +1,6 @@
 package org.launchcode.controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.launchcode.models.JobData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,5 +24,23 @@ public class SearchController {
     }
 
     // TODO #1 - Create handler to process search request and display results
+
+    @RequestMapping(value = "results")
+    public String results(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
+
+        if (searchType.equals("all")) {
+            ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
+            model.addAttribute("jobs", jobs);
+            model.addAttribute("title", "All jobs with " + searchTerm);
+            return "list-jobs";
+        } else {
+            ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+            model.addAttribute("jobs", jobs);
+            model.addAttribute("title", "Jobs with " + searchType + ": " + searchTerm);
+            return "list-jobs";
+        }
+
+
+    }
 
 }
